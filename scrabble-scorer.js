@@ -61,7 +61,7 @@ let scrabbleScore =  function(word){
         }
     }
 	}
-  return `Score for '${word}': ${score}`
+  return `Score for '${word}': ${Number(score)}`
 	}
 // console.log(scrabbleScore)
 
