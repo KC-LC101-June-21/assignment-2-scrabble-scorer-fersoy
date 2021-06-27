@@ -31,7 +31,7 @@ function initialPrompt() {
   return input.question(`Let's play some scrabble!\n\nEnter a word to score: `);
 };
 
-let userInput = initialPrompt();
+
 
 let simpleScore = function(word){
   word = word.toUpperCase();
@@ -80,7 +80,7 @@ const scoringAlgorithms = [{
   scoringFunction: scrabbleScore
 }];
 
-
+let userInput;
 function scorerPrompt() {
   let askUser = input.question(`Which scoring algorithm would you like to use?\n\n0 - ${scoringAlgorithms[0].name}: ${scoringAlgorithms[0].description}\n1 - ${scoringAlgorithms[1].name}: ${scoringAlgorithms[1].description}\n2 - ${scoringAlgorithms[2].name}: ${scoringAlgorithms[2].description}\nEnter 0, 1, or 2: `);
   switch(Number(askUser)){
@@ -116,7 +116,7 @@ let vals = Object.values(newPointStructure);
 let letters = Object.keys(newPointStructure);
 
 function runProgram() {
-  // initialPrompt();
+  userInput = initialPrompt();
   scorerPrompt();
 }
 
