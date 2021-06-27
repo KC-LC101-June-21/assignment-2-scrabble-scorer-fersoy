@@ -82,11 +82,7 @@ const scoringAlgorithms = [{
 
 
 function scorerPrompt() {
-  let askUser = input.question(`Which scoring algorithm would you like to use?\n
-  0 - ${scoringAlgorithms[0].name}: ${scoringAlgorithms[0].description}\n
-  1 - ${scoringAlgorithms[1].name}: ${scoringAlgorithms[1].description}\n
-  2 - ${scoringAlgorithms[2].name}: ${scoringAlgorithms[2].description}\n
-  Enter 0, 1, or 2: `);
+  let askUser = input.question(`Which scoring algorithm would you like to use?\n\n0 - ${scoringAlgorithms[0].name}: ${scoringAlgorithms[0].description}\n1 - ${scoringAlgorithms[1].name}: ${scoringAlgorithms[1].description}\n2 - ${scoringAlgorithms[2].name}: ${scoringAlgorithms[2].description}\nEnter 0, 1, or 2: `);
   switch(Number(askUser)){
     case 0:
     console.log(`${scoringAlgorithms[0].scoringFunction(userInput)}`);
