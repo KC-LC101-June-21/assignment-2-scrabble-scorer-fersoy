@@ -49,7 +49,7 @@ let vowelBonusScore = function(word){
       score += 1;
       }
     }
-    return `Score for '${word}': ${score}`
+    return `Score for ${word}: ${score}`
 }
 
 let scrabbleScore =  function(word){
