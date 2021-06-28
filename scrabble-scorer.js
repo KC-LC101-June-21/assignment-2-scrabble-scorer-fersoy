@@ -28,14 +28,18 @@ function oldScrabbleScorer(word) {
 // don't change the names or your program won't work as expected. //
 
 function initialPrompt() {
-  return input.question(`Let's play some scrabble!\n\nEnter a word to score: `);
+  let inputUser = input.question(`Let's play some scrabble!\nEnter a word to score: `);
+  while(/[^A-Za-z\s]/.test(inputUser) === true || inputUser === ""){
+    inputUser = input.question(`Please, only enter letters: `)
+  }
+  return inputUser;
 };
 
 
 
 let simpleScore = function(word){
   word = word.toUpperCase();
-  return `Score for '${word}': ${word.length}`;
+  return word.length;
 }
 
 let vowelBonusScore = function(word){
@@ -49,7 +53,7 @@ let vowelBonusScore = function(word){
       score += 1;
       }
     }
-    return `Score for '${word}': ${Number(score)}`
+    return score;
 }
 
 let scrabbleScore =  function(word){
@@ -61,7 +65,7 @@ let scrabbleScore =  function(word){
         }
     }
 	}
-  return `Score for '${word}': ${Number(score)}`
+  return score;
 	}
 // console.log(scrabbleScore)
 
@@ -82,20 +86,19 @@ const scoringAlgorithms = [{
 
 let userInput;
 function scorerPrompt() {
-  let askUser = input.question(`Which scoring algorithm would you like to use?\n\n0 - ${scoringAlgorithms[0].name}: ${scoringAlgorithms[0].description}\n1 - ${scoringAlgorithms[1].name}: ${scoringAlgorithms[1].description}\n2 - ${scoringAlgorithms[2].name}: ${scoringAlgorithms[2].description}\nEnter 0, 1, or 2: `);
-  switch(Number(askUser)){
-    case Number(0):
-    console.log(`${scoringAlgorithms[0].scoringFunction(userInput)}`);
-    break;
-    case Number(1):
-    console.log(`${scoringAlgorithms[1].scoringFunction(userInput)}`);
-    break;
-    case Number(2):
-    console.log(`${scoringAlgorithms[2].scoringFunction(userInput)}`);
-    break;
-    default:
-    console.log(`Please enter 0, 1 or 2!!!`)
-    break;
+  let askUser = Number(input.question(`Which scoring algorithm would you like to use?\n
+  0 - ${scoringAlgorithms[0].name}: ${scoringAlgorithms[0].description}\n
+  1 - ${scoringAlgorithms[1].name}: ${scoringAlgorithms[1].description}\n
+  2 - ${scoringAlgorithms[2].name}: ${scoringAlgorithms[2].description}\n
+  Enter 0, 1, or 2: `));
+  
+
+  if(askUser === 0){
+    console.log(`Score for '${userInput}': ${scoringAlgorithms[0].scoringFunction(userInput)}`);
+  } else if(askUser === 1){
+    console.log(`Score for '${userInput}': ${scoringAlgorithms[1].scoringFunction(userInput)}`);
+  }else if(askUser === 2){
+    console.log(`Score for '${userInput}': ${scoringAlgorithms[2].scoringFunction(userInput)}`);
   }
 };
 
@@ -117,7 +120,7 @@ let letters = Object.keys(newPointStructure);
 
 function runProgram() {
   userInput = initialPrompt();
-  scorerPrompt();
+  let result = scorerPrompt();
 }
 
 // Don't write any code below this line //
